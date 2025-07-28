@@ -38,7 +38,10 @@ def main(current_query: str, previous_query: str) -> dict:
 
                 question_words = ['what', 'how', 'why', 'when', 'where', 'who', 'which', 'is', 'are', 'do', 'does', 'can', 'will']
                 
-                if len(candidate.split()) <= 3 and not any(word in candidate for word in question_words): 
+                candidate_words = candidate.split()
+                has_question_word = any(word in question_words for word in candidate_words)
+                
+                if len(candidate_words) <= 3 and not has_question_word: 
                     extracted_query = candidate 
                     pattern_type = p_type
                 
